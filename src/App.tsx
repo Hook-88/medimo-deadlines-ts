@@ -3,8 +3,10 @@
 
 export default function App() {
     return (
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <div>
+        <header className="bg-white shadow-md py-2">
+            <h1 className="text-2xl max-w-screen-xl mx-auto">Medimo Deadlines</h1>
+        </header>
+      </div>
     )
   }
