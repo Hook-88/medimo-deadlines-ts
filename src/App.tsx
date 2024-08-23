@@ -7,6 +7,9 @@ export default function App() {
         <header className="bg-white shadow-md py-2">
             <h1 className="text-2xl max-w-screen-xl mx-auto">Medimo Deadlines</h1>
         </header>
+        <main>
+            here goes main
+        </main>
       </div>
     )
   }
