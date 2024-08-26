@@ -12,17 +12,21 @@ export default function App() {
         <div className="mt-2 flex-grow">
             <main className="max-w-7xl mx-auto">
                 <Card className="flex flex-col gap-2 max-w-sm">
-                    <Card.Header className="py-2 px-4 bg-white shadow-md rounded-sm flex justify-between text-lg tracking-wide">
+                    <Card.Header 
+                        className="
+                            py-2 px-4 bg-white shadow-md rounded-sm 
+                            flex justify-between text-lg tracking-wide 
+                            font-semibold items-center cursor-pointer
+                            "
+                    >
                         <h2>Deadline Vandaag</h2>
-                        <button className="pl-2">
-                            <FaAngleUp />
-                        </button>
+                        <FaAngleUp />
                     </Card.Header>
                     <Card.Body className="p-4 bg-white shadow-md rounded-sm">
                         <form className="flex flex-col gap-1">
                             <label 
                                 htmlFor="deadline_today_time"
-                                className="text-sm tracking-wide font-semibold"
+                                className="text-sm tracking-wide"
                             >
                                 Uiterste tijd van voorschrijven/bestellen:
                             </label>
