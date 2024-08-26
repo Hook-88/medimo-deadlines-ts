@@ -1,4 +1,5 @@
 import { type ReactNode } from "react"
+import { useCardContext } from "./Card";
 
 type CardBodyProps = {
     children: ReactNode;
@@ -6,8 +7,9 @@ type CardBodyProps = {
 }
 
 export default function CardBody({children, className}: CardBodyProps) {
+    const { open } = useCardContext()
     
-    return <section className={className}>
+    return open ? <section className={className}>
         {children}
-    </section>
+    </section> : null
 }

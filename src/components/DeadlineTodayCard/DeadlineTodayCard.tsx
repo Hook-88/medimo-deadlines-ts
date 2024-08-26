@@ -1,5 +1,4 @@
 import Card from "../Card/Card"
-import { FaAngleUp } from "react-icons/fa6"
 
 export default function DeadlineTodayCard() {
     
@@ -9,11 +8,10 @@ export default function DeadlineTodayCard() {
                 className="
                     py-2 px-4 bg-white shadow-md rounded-sm 
                     flex justify-between text-lg tracking-wide 
-                    font-semibold items-center cursor-pointer
+                    font-semibold items-center cursor-pointer select-none
                     "
             >
                 <h2>Deadline Vandaag</h2>
-                <FaAngleUp />
             </Card.Header>
             <Card.Body className="p-4 bg-white shadow-md rounded-sm">
                 <form className="flex flex-col gap-1">

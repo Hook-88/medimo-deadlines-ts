@@ -1,4 +1,5 @@
 import { type ReactNode } from "react"
+import { useCardContext } from "./Card";
 
 type CardFooterProps = {
     children: ReactNode;
@@ -6,8 +7,9 @@ type CardFooterProps = {
 }
 
 export default function CardFooter({children, className}: CardFooterProps) {
-    
-    return <footer className={className}>
+    const { open } = useCardContext()
+
+    return open ? <footer className={className}>
         {children}
-    </footer>
+    </footer> : null
 }

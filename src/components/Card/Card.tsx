@@ -1,4 +1,4 @@
-import { createContext, type ReactNode } from "react"
+import { createContext, useContext, type ReactNode } from "react"
 import CardHeader from "./CardHeader"
 import CardBody from "./CardBody"
 import CardFooter from "./CardFooter"
@@ -19,8 +19,18 @@ type CardContextValue = CardState & {
 
 const CardContext = createContext<CardContextValue | null>(null)
 
+export function useCardContext() {
+    const cardCtx = useContext(CardContext)
+
+    if (cardCtx === null) {
+        throw new Error("The CardContext is null!!")
+    }
+
+    return cardCtx
+}
+
 export default function Card({children, className}: CardProps) {
-    const [open, toggleOpen] = useToggle(true)
+    const [open, toggleOpen] = useToggle(false)
     
     const ctx: CardContextValue = {
         open: open,
