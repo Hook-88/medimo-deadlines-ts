@@ -48,8 +48,9 @@ export default function DeadlineTodayCard() {
             >
                 <h2>Deadline Vandaag</h2>
             </Card.Header>
-            <Card.Body className="p-4 bg-white shadow-md rounded-sm">
-                <form className="flex flex-col gap-1" onSubmit={handleSubmit(onHandleSubmit)}>
+
+            <form className="flex flex-col gap-2" onSubmit={handleSubmit(onHandleSubmit)}>
+                <Card.Body className="p-4 bg-white shadow-md rounded-sm flex flex-col gap-1">
                     <label 
                         htmlFor="deadline_today_time"
                         className="text-sm tracking-wide"
@@ -62,23 +63,22 @@ export default function DeadlineTodayCard() {
                         className="border rounded-md px-2 py-1"
                         {...register("prescription_time", {required: true})}
                     />
-                    <button className="hidden">
-                        calc
+                </Card.Body>
+                <Card.Footer className="py-2 px-4 bg-white shadow-md rounded-sm flex gap-2">
+                    <button className="px-4 py-1 bg-sky-900 text-white rounded-sm border-2 border-sky-900">
+                        Bereken deadline
                     </button>
-                </form>
-            </Card.Body>
-            <Card.Footer className="py-2 px-4 bg-white shadow-md rounded-sm flex gap-2">
-                <button className="px-4 py-1 bg-sky-900 text-white rounded-sm border-2 border-sky-900">
-                    Bereken deadline
-                </button>
-                {
-                    deadlineToday && (
-                        <button className="px-4 py-1 border-2 border-sky-900 rounded-sm flex-grow">
-                            {deadlineToday}
-                        </button>
-                    )
-                }
-            </Card.Footer>
+                    {
+                        deadlineToday && (
+                            <button className="px-4 py-1 border-2 border-sky-900 rounded-sm flex-grow">
+                                {deadlineToday}
+                            </button>
+                        )
+                    }
+                </Card.Footer>        
+            </form>
+
+            
         </Card>
     )
 }
