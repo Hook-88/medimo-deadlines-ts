@@ -1,6 +1,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import DeadlineBaxterCard from "./components/DeadlineBaxterCard/DeadlineBaxterCard"
+import DeadlineDeliveryCard from "./components/DeadlineDeliveryCard/DeadlineDeliveryCard"
 import DeadlineTodayCard from "./components/DeadlineTodayCard/DeadlineTodayCard"
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
             <main className="max-w-7xl mx-auto grid grid-cols-3 gap-4">
                 <DeadlineTodayCard />
                 <DeadlineBaxterCard />
+                <DeadlineDeliveryCard />
             </main>
         </div>
         <footer className="py-2 text-center">

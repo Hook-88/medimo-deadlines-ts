@@ -1,36 +1,34 @@
 import { useForm } from "react-hook-form"
 import Card from "../Card/Card"
-import { getDayIndexMinutes, getTotalTimeStrMinutes, getDeadline } from "../../utility/utilityMinutes"
-import { useState } from "react"
-import copyToClipboard from "../../utility/copyToClipboard"
+import { getTotalTimeStrMinutes, getDayIndexMinutes, getDeadline } from "../../utility/utilityMinutes"
+import { useState } from "react";
+import copyToClipboard from "../../utility/copyToClipboard";
 
 type formDataType = {
-    send_baxter_time: string;
-    send_baxter_day: string;
-    start_baxter_day: string;
-    start_baxter_time: string;
+    order_day: string;
+    order_time: string;
+    delivery_day: string;
 }
 
-export default function DeadlineBaxterCard() {
-    const [deadlineBaxter, setDeadlineBaxter] = useState<number | null>(null)
+export default function DeadlineDeliveryCard() {
+    const [deadlineDelivery, setDeadlineDelivery] = useState<number | null>(null)
     const {register, handleSubmit} = useForm({
         defaultValues: {
-            send_baxter_time: "",
-            send_baxter_day: "none",
-            start_baxter_day: "none",
-            start_baxter_time: "00:00"
+            order_day: "none",
+            order_time: "",
+            delivery_day: "none"
         }
     })
 
     function onHandleSubmit(formData: formDataType) {
-        if (formData.send_baxter_day === "none" || formData.start_baxter_day === "none") {
+        if (formData.order_day === "none" || formData.delivery_day === "none") {
             throw new Error("You need to select a day")
         }
 
-        const send = getDayIndexMinutes(formData.send_baxter_day) + getTotalTimeStrMinutes(formData.send_baxter_time)
-        const start = getDayIndexMinutes(formData.start_baxter_day) + getTotalTimeStrMinutes(formData.start_baxter_time)
+        const send = getDayIndexMinutes(formData.order_day) + getTotalTimeStrMinutes(formData.order_time)
+        const start = getDayIndexMinutes(formData.delivery_day)
 
-        setDeadlineBaxter(getDeadline(send, start))
+        setDeadlineDelivery(getDeadline(send, start))
     }
     
     return (
@@ -49,21 +47,16 @@ export default function DeadlineBaxterCard() {
                 className="flex flex-col gap-2"
             >
                 <Card.Body className="p-4 bg-white shadow-md rounded-sm flex flex-col gap-1">
-                    <label htmlFor="send_baxter_day"
+                    <label htmlFor="order_day"
                         className="text-sm tracking-wide"
                     >
-                        Dag van sturen Baxter:
+                        Uiterste dag van bestellen:
                     </label>
 
                     <select
-                        id="send_baxter_day"
+                        id="order_day"
                         className="border rounded-md py-2 px-1" 
-                        {
-                            ...register(
-                                "send_baxter_day", 
-                                {
-                                    required: true,
-                                }
+                        {...register("order_day", {required: true,}
 
                             )
                         }
@@ -79,30 +72,30 @@ export default function DeadlineBaxterCard() {
                     </select>
 
                     <label 
-                        htmlFor="deadline_today_time"
+                        htmlFor="order_time"
                         className="text-sm tracking-wide"
                     >
-                        Tijd van sturen:
+                        Uiterste tijd van bestellen:
                     </label>
                     <input 
                         type="time" 
-                        id="send_baxter_time" 
+                        id="order_time" 
                         className="border rounded-md px-2 py-1"
-                        {...register("send_baxter_time", {required: true})}
+                        {...register("order_time", {required: true})}
                     />
                 </Card.Body>
 
                 <Card.Body className="p-4 bg-white shadow-md rounded-sm flex flex-col gap-1">
-                    <label htmlFor="start_baxter_day"
+                    <label htmlFor="delivery_day"
                         className="text-sm tracking-wide"
                     >
-                        Startdag Baxter:
+                        Leverdag:
                     </label>
 
                     <select
-                        id="start_baxter_day"
+                        id="delivery_day"
                         className="border rounded-md py-2 px-1" 
-                        {...register("start_baxter_day", {required: true})}
+                        {...register("delivery_day", {required: true})}
                     >
                         <option disabled value="none">--Kies een dag--</option>
                         <option value="0">Maandag</option>
@@ -113,19 +106,6 @@ export default function DeadlineBaxterCard() {
                         <option value="5">Zaterdag</option>
                         <option value="6">Zondag</option>
                     </select>
-
-                    <label 
-                        htmlFor="start_baxter_time"
-                        className="text-sm tracking-wide"
-                    >
-                        Starttijd Baxter:
-                    </label>
-                    <input 
-                        type="time" 
-                        id="start_baxter_time" 
-                        className="border rounded-md px-2 py-1"
-                        {...register("start_baxter_time", {required: true})}
-                    />
                 </Card.Body>
 
                 <Card.Footer className="py-2 px-4 bg-white shadow-md rounded-sm flex gap-2">
@@ -133,13 +113,13 @@ export default function DeadlineBaxterCard() {
                         Bereken deadline
                     </button>
                     {
-                        deadlineBaxter && (
+                        deadlineDelivery && (
                             <button 
                                 className="px-4 py-1 border-2 border-sky-900 rounded-sm flex-grow"
                                 type="button"
-                                onClick={() => copyToClipboard(deadlineBaxter)}
+                                onClick={() => copyToClipboard(deadlineDelivery)}
                             >
-                                {deadlineBaxter}
+                                {deadlineDelivery}
                             </button>
                         )
                     }
