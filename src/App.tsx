@@ -1,5 +1,6 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
+import DeadlineBaxterCard from "./components/DeadlineBaxterCard/DeadlineBaxterCard"
 import DeadlineTodayCard from "./components/DeadlineTodayCard/DeadlineTodayCard"
 
 export default function App() {
@@ -9,8 +10,9 @@ export default function App() {
             <h1 className="text-2xl max-w-screen-xl mx-auto tracking-wide">Medimo Deadlines</h1>
         </header>
         <div className="mt-2 flex-grow">
-            <main className="max-w-7xl mx-auto">
+            <main className="max-w-7xl mx-auto flex gap-4">
                 <DeadlineTodayCard />
+                <DeadlineBaxterCard />
             </main>
         </div>
         <footer className="py-2 text-center">
