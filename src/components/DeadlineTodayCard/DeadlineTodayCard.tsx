@@ -1,34 +1,24 @@
 import { useState } from "react"
 import Card from "../Card/Card"
 import { useForm } from "react-hook-form"
+import { getTimeStrMinutes, getTimeStrHourMinutes } from "../../utility/utilityMinutes"
+import copyToClipboard from "../../utility/copyToClipboard"
 
 type formDataType = {
     prescription_time: string
 }
 
 export default function DeadlineTodayCard() {
+    const [deadlineToday, setDeadlineToday] = useState<number | null>(null)
     const {register, handleSubmit} = useForm({
         defaultValues: {
             prescription_time: ""
         }
     })
-    const [deadlineToday, setDeadlineToday] = useState<number | null>(null)
-
-    function getHourMinutes(timeStr:string) {
-        const hour = timeStr.slice(0, 2)
-
-        return Number(hour) * 60
-    }
-
-    function getMinutes(timeStr:string) {
-        const minutes = timeStr.slice(3)
-
-        return Number(minutes)
-    }
 
     function getDeadlineToday(timeStr:string) {
         const totalMinutesDay = 24 * 60
-        const totalMinutes = getHourMinutes(timeStr) + getMinutes(timeStr)
+        const totalMinutes = getTimeStrHourMinutes(timeStr) + getTimeStrMinutes(timeStr)
 
         return totalMinutesDay - totalMinutes
     }
@@ -70,7 +60,11 @@ export default function DeadlineTodayCard() {
                     </button>
                     {
                         deadlineToday && (
-                            <button className="px-4 py-1 border-2 border-sky-900 rounded-sm flex-grow">
+                            <button 
+                                className="px-4 py-1 border-2 border-sky-900 rounded-sm flex-grow"
+                                type="button"
+                                onClick={() => copyToClipboard(deadlineToday)}
+                            >
                                 {deadlineToday}
                             </button>
                         )
