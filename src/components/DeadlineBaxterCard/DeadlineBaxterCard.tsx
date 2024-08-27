@@ -18,7 +18,24 @@ export default function DeadlineBaxterCard() {
                 // onSubmit={handleSubmit(onHandleSubmit)}
             >
                 <Card.Body className="p-4 bg-white shadow-md rounded-sm flex flex-col gap-1">
-                    
+                    <label htmlFor="send_baxter_day"
+                        className="text-sm tracking-wide"
+                    >
+                        Dag sturen baxter:
+                    </label>
+                    <select 
+                        id="send_baxter_day"
+                        className="border rounded-md py-2 px-1"
+                    >
+                        <option value={0}>Maandag</option>
+                        <option value={0}>Dinsdag</option>
+                        <option value={0}>Woensdag</option>
+                        <option value={0}>Donderdag</option>
+                        <option value={0}>Vrijdag</option>
+                        <option value={0}>Zaterdag</option>
+                        <option value={0}>Zondag</option>
+                    </select>
+
                     <label 
                         htmlFor="deadline_today_time"
                         className="text-sm tracking-wide"
