@@ -28,7 +28,7 @@ export default function DeadlineTodayCard() {
     }
     
     return (
-        <Card className="flex flex-col gap-2 w-1/3">
+        <Card className="flex flex-col gap-2">
             <Card.Header 
                 className="
                     py-2 px-4 bg-white shadow-md rounded-sm 
